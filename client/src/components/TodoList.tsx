@@ -1,12 +1,8 @@
 import { useEffect, useState } from "react";
-import { ResponseAPI } from "../api/client";
-import { getTodos } from "../utils/getTodos";
-import { updateTodo } from "../utils/updateTodo";
+import { ResponseAPI, createTodo, getTodos, updateTodo, deleteTodo } from "../api/client";
 import { ErrorBoundary } from "react-error-boundary";
-import { deleteTodo } from "../utils/deleteTodo";
 import { Todo } from "./Todo";
 import { AddTodo } from "./AddTodo";
-import { createTodo } from "../utils/createTodo";
 
 enum Filter {
     All = "all",
