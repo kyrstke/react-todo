@@ -3,7 +3,7 @@ const http = require("http");
 const express = require("express");
 const mongoose = require("mongoose"); // mongoose for mongodb
 const cors = require("cors");
-const config = require("config");
+require("dotenv").config();
 
 const methodOverride = require("method-override");
 const bodyParser = require("body-parser");
@@ -13,7 +13,7 @@ const port = 4000;
 
 // configuration ===============================================================
 mongoose.connect(
-    config.get("mongoURI"),
+    process.env.MONGO_URI,
     {
         useNewUrlParser: true,
         useUnifiedTopology: true
