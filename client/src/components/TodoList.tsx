@@ -81,12 +81,14 @@ export const TodoList = () => {
                 <button className="button" onClick={() => setFilter(Filter.Todo)}>Todo</button>
                 <button className="button" onClick={() => setFilter(Filter.Done)}>Done</button>
             </div>
-            <div className="my-8">
-                {!todos ? "Loading..." : filteredTodos.map((todo: ResponseAPI) => (
-                    <Todo key={todo._id} todo={todo} onCheckboxChange={handleUpdate} onDelete={handleDelete} />
-                ))}
-            </div>
-            <AddTodo onAdd={handleAdd} />
+            <ErrorBoundary fallback={<div>Something went wrong</div>}>
+                <div className="my-8">
+                    {!todos ? "Loading..." : filteredTodos.map((todo: ResponseAPI) => (
+                        <Todo key={todo._id} todo={todo} onCheckboxChange={handleUpdate} onDelete={handleDelete} />
+                    ))}
+                </div>
+                <AddTodo onAdd={handleAdd} />
+            </ErrorBoundary>
         </>
     );
 };
