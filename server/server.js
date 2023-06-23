@@ -41,12 +41,8 @@ app.use(cors());
 // get all todos
 app.get("/api/todos", function (req, res) {
     // use mongoose to get all todos in the database
-    Todo.find().then((err, todos) => {
+    Todo.find().then((todos) => {
         // if there is an error retrieving, send the error. nothing after res.send(err) will execute
-        if (err) {
-            res.send(err);
-            return;
-        }
         console.log("GET todos");
         res.json(todos); // return all todos in JSON format
     });
@@ -69,8 +65,7 @@ app.post("/api/todos", function (req, res) {
             text: req.body.text,
             done: false,
         }
-    ).then((err, todo) => {
-        if (err) res.send(err);
+    ).then((todo) => {
         console.log("POST todo");
         res.json(todo);
     });
@@ -82,7 +77,7 @@ app.put("/api/todos/:todo_id", function (req, res) {
     Todo.findByIdAndUpdate(
         req.params.todo_id, { done: req.body.done }
     ).then((todo) => {
-        console.log("PUT todo");
+        console.log("PUT todo", todo);
         res.json(todo);
     });
 });
